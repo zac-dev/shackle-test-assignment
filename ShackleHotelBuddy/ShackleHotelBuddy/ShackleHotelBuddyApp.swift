@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct ShackleHotelBuddyApp: App {
+    
+    @StateObject var fetcher = HotelInteractor()
+    @State var searchCriteria = HotelSearch(checkInDate: .now,
+                                            checkOutDate: .tomorrow,
+                                            adultCount: 1,
+                                            childrenCount: 0)
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView(fetcher: fetcher, searchCriteria: $searchCriteria)
         }
     }
 }
